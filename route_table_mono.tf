@@ -1,6 +1,9 @@
 resource "aws_route_table" "monolitic-public-rt-tf" {
   vpc_id = aws_vpc.monolitic-vpc-tf.id
-
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.monolitic-ig-tf.id
+  }
   tags = {"Name" = "Terraform resource"}
 }
 

@@ -27,5 +27,5 @@ resource "aws_instance" "monolitic-server-tf" {
 
   user_data = "${file("mono_server_init.sh")}"
 
-  tags = {"Name" = "bastion-host-tf"}
+  tags = {"Name" = "monolitic-server-tf"}
 }
