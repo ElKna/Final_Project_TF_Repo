@@ -10,14 +10,14 @@ resource "aws_db_instance" "mono-auth-db-tf" {
   engine = "mysql"
   engine_version = "8.0.28"
   instance_class = "db.t2.micro"
-  username = "admin"
-  password = "password"
+  username = var.db_admin
+  password = var.db_password
   parameter_group_name = "default.mysql8.0"
-  option_group_name = "default.mysql8.0"
-  db_name = "aacompany"
+  db_name = var.db_name
+  db_subnet_group_name = "${aws_db_subnet_group.mono-mysql-subnet-group-tf.id}"
   publicly_accessible = false
   skip_final_snapshot = true
-  port = 3306
+  port = var.db_port
   vpc_security_group_ids = [aws_security_group.monolitic-db-sg-tf.id]
 
   tags = {"Name" = "Terraform resource"}

@@ -1,4 +1,5 @@
 resource "aws_vpc" "monolitic-vpc-tf" {
   cidr_block = "10.0.0.0/16"
-  tags = {"Name" = "Terraform resource"}
+  enable_dns_hostnames = true
+  tags = {"Name" = "Terraform VPC"}
 }
