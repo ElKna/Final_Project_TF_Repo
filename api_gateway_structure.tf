@@ -22,5 +22,11 @@ resource "aws_apigatewayv2_integration" "mono-private-tf" {
 
   connection_type = "VPC_LINK"
   connection_id = aws_apigatewayv2_vpc_link.mono-link-tf.id
-  
+}
+
+resource "aws_apigatewayv2_route" "mono-user-route-tf" {
+  api_id = aws_apigatewayv2_api.whole-api-gateway-tf.id
+  route_key = "ANY /{proxy+}"
+
+  target = "integrations/${aws_apigatewayv2_integration.mono-private-tf.id}"
 }
