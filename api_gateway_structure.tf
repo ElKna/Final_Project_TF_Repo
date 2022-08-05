@@ -20,5 +20,7 @@ resource "aws_apigatewayv2_integration" "mono-private-tf" {
   integration_type = "HTTP_PROXY"
   integration_uri = aws_lb_listener.private-alb-linstener-tf.arn
 
+  connection_type = "VPC_LINK"
+  connection_id = aws_apigatewayv2_vpc_link.mono-link-tf.id
   
 }
