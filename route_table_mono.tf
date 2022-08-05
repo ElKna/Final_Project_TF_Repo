@@ -4,19 +4,28 @@ resource "aws_route_table" "monolitic-public-rt-tf" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.monolitic-ig-tf.id
   }
-  tags = {"Name" = "Terraform resource"}
+  tags = {"Name" = "tf Monolitic Public RT"}
 }
 
 resource "aws_route_table" "monolitic-private1-rt-tf" {
   vpc_id = aws_vpc.monolitic-vpc-tf.id
   
-  tags = {"Name" = "Terraform resource"}
+  tags = {"Name" = "tf Monolitic Private1 RT"}
 }
 
 resource "aws_route_table" "monolitic-private2-rt-tf" {
   vpc_id = aws_vpc.monolitic-vpc-tf.id
   
-  tags = {"Name" = "Terraform resource"}
+  tags = {"Name" = "tf Monolitic Private2 RT"}
+}
+
+resource "aws_route_table_association" "mono-public-rt-asso-tf" {
+  subnet_id = aws_subnet.monolitic-public-subnet-tf.id
+  route_table_id = aws_route_table.monolitic-public-rt-tf.id
+
+  depends_on = [
+    aws_subnet.monolitic-public-subnet-tf, aws_route_table.monolitic-public-rt-tf
+  ]
 }
 
 resource "aws_route_table_association" "mono-private1-rt-asso-tf" {

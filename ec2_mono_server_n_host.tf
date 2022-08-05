@@ -25,6 +25,13 @@ resource "aws_instance" "monolitic-server-tf" {
     volume_type = "gp2"
   }
 
+  depends_on = [
+    aws_route_table_association.mono-private2-rt-asso-tf, 
+    aws_route_table_association.mono-private2-rt-asso-tf, 
+    aws_route.mono-private1-route-tf,
+    aws_route.mono-private2-route-tf
+  ]
+
   user_data = "${file("mono_server_init.sh")}"
 
   tags = {"Name" = "monolitic-server-tf"}
