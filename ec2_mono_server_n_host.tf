@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion-host-tf" {
-  ami = "ami-058165de3b7202099"
+  ami = "ami-0f9e1c368c45414d0"
   instance_type = "t2.micro"
   key_name = "bsHost"
   subnet_id = aws_subnet.monolitic-public-subnet-tf.id
@@ -14,7 +14,7 @@ resource "aws_instance" "bastion-host-tf" {
 }
 
 resource "aws_instance" "monolitic-server-tf" {
-  ami = "ami-058165de3b7202099"
+  ami = "ami-0a8bc755297b74eb6"
   instance_type = "t2.micro"
   key_name = "serverInstance"
   subnet_id = aws_subnet.monolitic-private-subnet1-tf.id
